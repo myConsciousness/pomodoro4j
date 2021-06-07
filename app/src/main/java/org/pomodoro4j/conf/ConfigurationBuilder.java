@@ -30,30 +30,79 @@ public final class ConfigurationBuilder {
      */
     private ConfigurationBase configurationBase = new PropertyConfiguration();
 
+    /**
+     * Sets the concentration minutes.
+     *
+     * <p>
+     * This {@link #setConcentrationMinutes(int)} will always fail at runtime if
+     * this method is called after the {@link #build()} has already been called.
+     *
+     * @param concentrationMinutes The concentration minutes
+     * @return This instance
+     */
     public ConfigurationBuilder setConcentrationMinutes(int concentrationMinutes) {
         this.checkNotBuilt();
         this.configurationBase.setConcentrationMinutes(concentrationMinutes);
         return this;
     }
 
+    /**
+     * Sets the break minutes.
+     *
+     * <p>
+     * This {@link #setBreakMinutes(int)} will always fail at runtime if this method
+     * is called after the {@link #build()} has already been called.
+     *
+     * @param breakMinutes The break minutes
+     * @return This instance
+     */
     public ConfigurationBuilder setBreakMinutes(int breakMinutes) {
         this.checkNotBuilt();
         this.configurationBase.setBreakMinutes(breakMinutes);
         return this;
     }
 
+    /**
+     * Sets the longer break minutes.
+     *
+     * <p>
+     * This {@link #setLongerBreakMinutes(int)} will always fail at runtime if this
+     * method is called after the {@link #build()} has already been called.
+     *
+     * @param longerBreakMinutes The longer break minutes
+     * @return This instance
+     */
     public ConfigurationBuilder setLongerBreakMinutes(int longerBreakMinutes) {
         this.checkNotBuilt();
         this.configurationBase.setLongerBreakMinutes(longerBreakMinutes);
         return this;
     }
 
+    /**
+     * Sets the count until longer break.
+     *
+     * <p>
+     * This {@link #setCountUntilLongerBreak(int)} will always fail at runtime if
+     * this method is called after the {@link #build()} has already been called.
+     *
+     * @param countUntilLongerBreak The count until longer break
+     * @return This instance
+     */
     public ConfigurationBuilder setCountUntilLongerBreak(int countUntilLongerBreak) {
         this.checkNotBuilt();
         this.configurationBase.setCountUntilLongerBreak(countUntilLongerBreak);
         return this;
     }
 
+    /**
+     * Builds the configuration object based on the parameters.
+     *
+     * <p>
+     * This {@link #build()} will always fail at runtime if this method is called
+     * after the {@link #build()} has already been called.
+     *
+     * @return The built configuration
+     */
     public Configuration build() {
         this.checkNotBuilt();
 
@@ -64,6 +113,10 @@ public final class ConfigurationBuilder {
         }
     }
 
+    /**
+     * Checks if the configuration has already been built. If the configuration has
+     * already been built, it will always fail at runtime.
+     */
     private void checkNotBuilt() {
         if (this.configurationBase == null) {
             throw new IllegalStateException("Cannot use this builder any longer, build() has already been called");
