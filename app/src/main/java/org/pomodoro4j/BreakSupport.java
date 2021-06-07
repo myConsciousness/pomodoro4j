@@ -15,15 +15,14 @@
 package org.pomodoro4j;
 
 /**
- *
  * @author Kato Shinya
  * @since 1.0.0
  */
-public interface IntervalSupport {
+public interface BreakSupport {
 
-    public boolean shouldStartInterval();
+    public boolean shouldStartBreak();
 
-    public boolean isIntervalOngoing();
+    public boolean isBreakOngoing();
 
-    public boolean shouldEndInterval();
+    public boolean shouldEndBreak();
 }
