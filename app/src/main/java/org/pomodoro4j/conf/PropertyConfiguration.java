@@ -17,8 +17,32 @@ package org.pomodoro4j.conf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+/**
+ * @author Kato Shinya
+ * @since 1.0.0
+ */
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public final class PropertyConfiguration extends ConfigurationBase {
+
+    /**
+     * {@code "minutes.concentration"}
+     */
+    private static final String CONCENTRATION_MINUTES = "minutes.concentration";
+
+    /**
+     * {@code "minutes.break"}
+     */
+    private static final String BREAK_MINUTES = "minutes.break";
+
+    /**
+     * {@code "minutes.longerBreak"}
+     */
+    private static final String LONGER_BREAK_MINUTES = "minutes.longerBreak";
+
+    /**
+     * {@code "count.longerBreak"}
+     */
+    private static final String COUNT_UNTIL_LONGER_BREAK = "count.longerBreak";
 
 }
