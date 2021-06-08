@@ -14,7 +14,9 @@
 
 package org.pomodoro4j.conf;
 
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -23,12 +25,22 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConfigurationBuilder {
 
     /**
      * The configuration base
      */
     private ConfigurationBase configurationBase = new PropertyConfiguration();
+
+    /**
+     * Returns the new instance of {@link ConfigurationBuilder} .
+     *
+     * @return The new instance of {@link ConfigurationBuilder}
+     */
+    public static ConfigurationBuilder newBuilder() {
+        return new ConfigurationBuilder();
+    }
 
     /**
      * Sets the concentration minutes.
