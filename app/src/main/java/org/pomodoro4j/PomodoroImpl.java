@@ -14,19 +14,33 @@
 
 package org.pomodoro4j;
 
-import lombok.AccessLevel;
+import org.pomodoro4j.conf.Configuration;
+
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
 
+/**
+ * @author Kato Shinya
+ * @since 1.0.0
+ */
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
+
+    /**
+     * The constructor.
+     *
+     * @param configuration The configuration
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
+    PomodoroImpl(@NonNull final Configuration configuration) {
+        super(configuration);
+    }
 
     @Override
     public void start() {
 
     }
-
 }

@@ -14,28 +14,41 @@
 
 package org.pomodoro4j;
 
+import org.pomodoro4j.conf.Configuration;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * @author Kato Shinya
+ * @since 1.0.0
+ */
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public abstract class PomodoroBaseImpl implements PomodoroBase {
+
+    /**
+     * The configuration
+     */
+    private Configuration configuration;
 
     @Override
     public boolean shouldStartBreak() {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean isBreakOngoing() {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean shouldEndBreak() {
-        // TODO Auto-generated method stub
         return false;
     }
 }
