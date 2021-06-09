@@ -14,7 +14,11 @@
 
 package org.pomodoro4j;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
+import org.pomodoro4j.conf.ConfigurationBuilder;
 
 /**
  * @author Kato Shinya
@@ -24,7 +28,14 @@ public final class PomodoroFactoryTest {
 
     @Test
     void testGetInstance() {
-        PomodoroFactory.newInstance().getInstance().start();
+        final Pomodoro pomodoro = assertDoesNotThrow(() -> PomodoroFactory.newInstance().getInstance());
+        assertNotNull(pomodoro);
+    }
 
+    @Test
+    void testGetInstanceWithConfiguration() {
+        final Pomodoro pomodoro = assertDoesNotThrow(
+                () -> PomodoroFactory.newInstance(ConfigurationBuilder.newBuilder().build()).getInstance());
+        assertNotNull(pomodoro);
     }
 }
