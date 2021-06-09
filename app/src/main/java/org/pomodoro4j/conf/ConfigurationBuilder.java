@@ -131,7 +131,7 @@ public final class ConfigurationBuilder {
      */
     private void checkNotBuilt() {
         if (this.configurationBase == null) {
-            throw new IllegalStateException("Cannot use this builder any longer, build() has already been called");
+            throw new IllegalStateException("Cannot use this builder any longer, build() has already been called.");
         }
     }
 }
