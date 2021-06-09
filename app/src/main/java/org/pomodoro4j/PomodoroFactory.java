@@ -51,7 +51,7 @@ public final class PomodoroFactory implements Serializable {
     /**
      * The default constructor.
      */
-    public PomodoroFactory() {
+    private PomodoroFactory() {
         this(ConfigurationContext.getInstance());
     }
 
@@ -62,8 +62,31 @@ public final class PomodoroFactory implements Serializable {
      *
      * @exception NullPointerException If {@code null} is passed as an argument
      */
-    public PomodoroFactory(@NonNull final Configuration configuration) {
+    private PomodoroFactory(@NonNull final Configuration configuration) {
         this.configuration = configuration;
+    }
+
+    /**
+     * Returns the new instance of {@link PomodoroFactory} .
+     *
+     * @return The new insrance of {@link PomodoroFactory}
+     */
+    public static PomodoroFactory newInstance() {
+        return new PomodoroFactory();
+    }
+
+    /**
+     * Returns the new instance of {@link PomodoroFactory} based on the
+     * configuration passed as an argument.
+     *
+     * @param configuration The configuration
+     * @return The new instance of {@link PomodoroFactory} based on the
+     *         configuration
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
+    public static PomodoroFactory newInstance(@NonNull final Configuration configuration) {
+        return new PomodoroFactory(configuration);
     }
 
     public Pomodoro getInstance() {

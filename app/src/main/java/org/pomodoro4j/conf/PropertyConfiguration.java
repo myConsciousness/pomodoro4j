@@ -89,7 +89,7 @@ public final class PropertyConfiguration extends ConfigurationBase {
         this("/");
     }
 
-    public PropertyConfiguration(@NonNull final InputStream inputStream) {
+    public PropertyConfiguration(final InputStream inputStream) {
         super();
 
         final Properties properties = new Properties();
@@ -140,7 +140,7 @@ public final class PropertyConfiguration extends ConfigurationBase {
             // for Google App Engine
             this.loadProperties(properties, new FileInputStream("WEB-INF/" + POMODORO4J_PROPERTIES));
         } catch (SecurityException | FileNotFoundException e) {
-            e.printStackTrace();
+            // When there is no property file
         }
 
         this.setFieldsWithTreePath(properties, treePath);
@@ -163,13 +163,13 @@ public final class PropertyConfiguration extends ConfigurationBase {
         }
     }
 
-    private boolean loadProperties(@NonNull final Properties properties, @NonNull final InputStream inputStream) {
+    private boolean loadProperties(@NonNull final Properties properties, final InputStream inputStream) {
         try {
             properties.load(inputStream);
             this.normalizeProperties(properties);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            // When there is no property file
             return false;
         }
     }

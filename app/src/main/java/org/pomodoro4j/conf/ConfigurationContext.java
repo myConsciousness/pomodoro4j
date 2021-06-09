@@ -24,8 +24,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public final class ConfigurationContext {
 
-    private static final String DEFAULT_CONFIGURATION_FACTORY = "pomodoro4j.conf.PropertyConfigurationFactory";
-    private static final String CONFIGURATION_IMPLEMENTATION = "pomodoro4j.configurationFactory";
+    private static final String DEFAULT_CONFIGURATION_FACTORY = "org.pomodoro4j.conf.PropertyConfigurationFactory";
+    private static final String CONFIGURATION_IMPLEMENTATION = "org.pomodoro4j.configurationFactory";
     private static final ConfigurationFactory CONFIGURATION_FACTORY;
 
     static {
