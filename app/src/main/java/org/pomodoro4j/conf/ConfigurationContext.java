@@ -20,12 +20,27 @@ import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
 
+/**
+ * @author Kato Shinya
+ * @since 1.0.0
+ */
 @ToString
 @EqualsAndHashCode
 public final class ConfigurationContext {
 
+    /**
+     * The package of default configuration factory
+     */
     private static final String DEFAULT_CONFIGURATION_FACTORY = "org.pomodoro4j.conf.PropertyConfigurationFactory";
+
+    /**
+     * The package of configuration implementation
+     */
     private static final String CONFIGURATION_IMPLEMENTATION = "org.pomodoro4j.configurationFactory";
+
+    /**
+     * The configuration factory
+     */
     private static final ConfigurationFactory CONFIGURATION_FACTORY;
 
     static {
@@ -38,6 +53,11 @@ public final class ConfigurationContext {
         }
     }
 
+    /**
+     * Returns the new instance of configuration implementation.
+     *
+     * @return The new instance of configuration implementation
+     */
     private static String getConfigurationImpl() {
         try {
             return System.getProperty(CONFIGURATION_IMPLEMENTATION, DEFAULT_CONFIGURATION_FACTORY);
@@ -47,10 +67,25 @@ public final class ConfigurationContext {
         }
     }
 
+    /**
+     * Returns the new insrance of {@link ConfigurationFactory} .
+     *
+     * @return The new instance of {@link ConfigurationFactory}
+     */
     public static Configuration getInstance() {
         return CONFIGURATION_FACTORY.getInstance();
     }
 
+    /**
+     * Returns the new instance of {@link ConfigurationFactory} based on the tree
+     * path passed as an argument.
+     *
+     * @param configTreePath The tree path of configuration
+     * @return The new instance of {@link ConfigurationFactory} based on the tree
+     *         path
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
     public static Configuration getInstance(@NonNull final String configTreePath) {
         return CONFIGURATION_FACTORY.getInstance(configTreePath);
     }
