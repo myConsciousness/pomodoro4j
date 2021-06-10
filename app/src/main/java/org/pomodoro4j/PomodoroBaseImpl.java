@@ -18,9 +18,11 @@ import org.apache.commons.lang3.time.StopWatch;
 import org.pomodoro4j.conf.Configuration;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -30,7 +32,6 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
 public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     /**
@@ -39,22 +40,46 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     private static final StopWatch STOP_WATCH = new StopWatch();
 
     /**
+     * The pomodoro state
+     */
+    @Setter(AccessLevel.PROTECTED)
+    @Getter(AccessLevel.PROTECTED)
+    private PomodoroState pomodoroState = PomodoroState.AWAITING;
+
+    /**
      * The configuration
      */
     private Configuration configuration;
 
+    /**
+     * The constructor.
+     *
+     * @param configuration the configuration
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
+    protected PomodoroBaseImpl(@NonNull final Configuration configuration) {
+        this.configuration = configuration;
+    }
+
     @Override
     public boolean shouldStartBreak() {
+        this.checkState();
+
         return false;
     }
 
     @Override
     public boolean isBreakOngoing() {
+        this.checkState();
+
         return false;
     }
 
     @Override
     public boolean shouldEndBreak() {
+        this.checkState();
+
         return false;
     }
 
@@ -65,5 +90,12 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
      */
     protected StopWatch getStopWatch() {
         return STOP_WATCH;
+    }
+
+    private void checkState() {
+        if (this.pomodoroState == PomodoroState.AWAITING) {
+            throw new PomodoroException(
+                    "The Pomodoro set has not been started; you must first run Pomodoro.start() in order to use the features of Pomodoro4J.");
+        }
     }
 }

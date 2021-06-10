@@ -42,5 +42,6 @@ final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
     @Override
     public void start() {
         super.getStopWatch().start();
+        super.setPomodoroState(PomodoroState.CONCENTRATING);
     }
 }
