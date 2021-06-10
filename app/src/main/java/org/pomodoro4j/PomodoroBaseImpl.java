@@ -47,6 +47,11 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     private PomodoroState pomodoroState = PomodoroState.AWAITING;
 
     /**
+     * The break counter
+     */
+    private Counter breakCounter = BreakCounter.newInstance();
+
+    /**
      * The configuration
      */
     private Configuration configuration;
@@ -65,21 +70,18 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     @Override
     public boolean shouldStartBreak() {
         this.checkState();
-
         return false;
     }
 
     @Override
     public boolean isBreakOngoing() {
         this.checkState();
-
-        return false;
+        return this.pomodoroState == PomodoroState.BREAKING;
     }
 
     @Override
     public boolean shouldEndBreak() {
         this.checkState();
-
         return false;
     }
 
@@ -92,6 +94,12 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
         return STOP_WATCH;
     }
 
+    /**
+     * Checks the pomodoro state. Whenever an abnormal condition is detected, an
+     * exception will be raised at runtime.
+     *
+     * @exception PomodoroException If the Pomodoro set has not been started
+     */
     private void checkState() {
         if (this.pomodoroState == PomodoroState.AWAITING) {
             throw new PomodoroException(
