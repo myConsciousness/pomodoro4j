@@ -17,11 +17,10 @@ package org.pomodoro4j;
 import java.io.Serializable;
 
 /**
- *
  * @author Kato Shinya
  * @since 1.0.0
  */
-public interface Pomodoro extends Serializable {
+public interface Pomodoro extends BreakSupport, Serializable {
 
     /**
      * Starts the pomodoro set.

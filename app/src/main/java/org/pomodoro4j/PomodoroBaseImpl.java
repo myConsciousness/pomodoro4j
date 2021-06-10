@@ -14,6 +14,7 @@
 
 package org.pomodoro4j;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.pomodoro4j.conf.Configuration;
 
 import lombok.AccessLevel;
@@ -33,6 +34,11 @@ import lombok.ToString;
 public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     /**
+     * The stop watch
+     */
+    private static final StopWatch STOP_WATCH = new StopWatch();
+
+    /**
      * The configuration
      */
     private Configuration configuration;
@@ -50,5 +56,14 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     @Override
     public boolean shouldEndBreak() {
         return false;
+    }
+
+    /**
+     * Returns the instance of {@link StopWatch} .
+     *
+     * @return The instance of {@link StopWatch}
+     */
+    protected StopWatch getStopWatch() {
+        return STOP_WATCH;
     }
 }

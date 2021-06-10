@@ -20,9 +20,24 @@ package org.pomodoro4j;
  */
 public interface BreakSupport {
 
+    /**
+     * Checkes if a break should be started.
+     *
+     * @return {@code true} if a break should be started, otherwise {@code false}
+     */
     public boolean shouldStartBreak();
 
+    /**
+     * Checkes if a break is ongoing.
+     *
+     * @return {@code true} if a break is ongoing, otherwise {@code false}
+     */
     public boolean isBreakOngoing();
 
+    /**
+     * Checkes if a break should be ended.
+     *
+     * @return {@code true} if a break should be ended, otherwise {@code false}
+     */
     public boolean shouldEndBreak();
 }

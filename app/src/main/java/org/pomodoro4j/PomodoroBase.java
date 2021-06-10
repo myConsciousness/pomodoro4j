@@ -16,6 +16,9 @@ package org.pomodoro4j;
 
 import java.io.Serializable;
 
+/**
+ * @author Kato Shinya
+ * @since 1.0.0
+ */
 public interface PomodoroBase extends BreakSupport, Serializable {
-
 }
