@@ -18,26 +18,25 @@ package org.pomodoro4j;
  * @author Kato Shinya
  * @since 1.0.0
  */
-public interface BreakSupport {
+enum PomodoroState {
 
     /**
-     * Checkes if a break should be started.
-     *
-     * @return {@code true} if a break should be started, otherwise {@code false}
+     * The awaiting
      */
-    public boolean shouldStartBreak();
+    AWAITING,
 
     /**
-     * Checkes if a break is ongoing.
-     *
-     * @return {@code true} if a break is ongoing, otherwise {@code false}
+     * The concentrating
      */
-    public boolean isBreakOngoing();
+    CONCENTRATING,
 
     /**
-     * Checkes if a break should be ended.
-     *
-     * @return {@code true} if a break should be ended, otherwise {@code false}
+     * The breaking
      */
-    public boolean shouldEndBreak();
+    BREAKING,
+
+    /**
+     * The longer breaking
+     */
+    LONGER_BREAKING;
 }
