@@ -14,6 +14,8 @@
 
 package org.pomodoro4j;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang3.time.StopWatch;
 import org.pomodoro4j.conf.Configuration;
 
@@ -35,16 +37,16 @@ import lombok.ToString;
 public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     /**
-     * The stop watch
+     * The pomodoro timer
      */
-    private static final StopWatch STOP_WATCH = new StopWatch();
+    private static final StopWatch POMODORO_TIMER = new StopWatch();
 
     /**
      * The pomodoro state
      */
     @Setter(AccessLevel.PROTECTED)
     @Getter(AccessLevel.PROTECTED)
-    private PomodoroState pomodoroState = PomodoroState.AWAITING;
+    private PomodoroState pomodoroState = PomodoroState.INITIALIZED;
 
     /**
      * The break counter
@@ -69,20 +71,54 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     @Override
     public boolean shouldStartBreak() {
-        this.checkState();
-        return false;
+        this.checkState(BreakPolicy.START_PRECONDITION);
+        return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getTime()) >= this.configuration
+                .getConcentrationMinutes();
     }
 
     @Override
     public boolean isBreakOngoing() {
-        this.checkState();
-        return this.pomodoroState == PomodoroState.BREAKING;
+        this.checkState(BreakPolicy.BREAKING_PRECONDITION);
+        return this.pomodoroState == PomodoroState.BREAKING || this.pomodoroState == PomodoroState.LONGER_BREAKING;
     }
 
     @Override
     public boolean shouldEndBreak() {
-        this.checkState();
+        this.checkState(BreakPolicy.BREAKING_PRECONDITION);
+        return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getSplitTime()) >= this.configuration.getBreakMinutes();
+    }
+
+    @Override
+    public boolean shouldEndLongerBreak() {
         return false;
+    }
+
+    @Override
+    public void startBreak() {
+        this.checkState(BreakPolicy.START_PRECONDITION);
+
+        if (this.breakCounter.getCount() >= this.configuration.getCountUntilLongerBreak()) {
+            this.breakCounter.reset();
+            this.pomodoroState = PomodoroState.LONGER_BREAKING;
+        } else {
+            this.breakCounter.increment();
+            this.pomodoroState = PomodoroState.BREAKING;
+        }
+
+        POMODORO_TIMER.split();
+    }
+
+    @Override
+    public void endBreak() {
+        this.checkState(BreakPolicy.END_PRECONDITION);
+
+        if (this.pomodoroState == PomodoroState.LONGER_BREAKING) {
+            this.pomodoroState = PomodoroState.FINISHED;
+        } else {
+            this.pomodoroState = PomodoroState.CONCENTRATING;
+        }
+
+        POMODORO_TIMER.unsplit();
     }
 
     /**
@@ -90,8 +126,8 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
      *
      * @return The instance of {@link StopWatch}
      */
-    protected StopWatch getStopWatch() {
-        return STOP_WATCH;
+    protected StopWatch getPomodoroTimer() {
+        return POMODORO_TIMER;
     }
 
     /**
@@ -100,10 +136,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
      *
      * @exception PomodoroException If the Pomodoro set has not been started
      */
-    private void checkState() {
-        if (this.pomodoroState == PomodoroState.AWAITING) {
-            throw new PomodoroException(
-                    "The Pomodoro set has not been started; you must first run Pomodoro.start() in order to use the features of Pomodoro4J.");
-        }
+    private void checkState(@NonNull final BreakPolicy breakPolicy) {
+        breakPolicy.checkState(this.pomodoroState);
     }
 }

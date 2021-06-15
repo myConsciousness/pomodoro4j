@@ -40,4 +40,22 @@ public interface BreakSupport {
      * @return {@code true} if a break should be ended, otherwise {@code false}
      */
     public boolean shouldEndBreak();
+
+    /**
+     * Checks if a longer break should be ended.
+     *
+     * @return {@code true} if a longer break should be ended, otherwise
+     *         {@code false}
+     */
+    public boolean shouldEndLongerBreak();
+
+    /**
+     * Starts the break.
+     */
+    public void startBreak();
+
+    /**
+     * Ends the break.
+     */
+    public void endBreak();
 }

@@ -21,9 +21,9 @@ package org.pomodoro4j;
 enum PomodoroState {
 
     /**
-     * The awaiting
+     * The initialized
      */
-    AWAITING,
+    INITIALIZED,
 
     /**
      * The concentrating
@@ -38,5 +38,10 @@ enum PomodoroState {
     /**
      * The longer breaking
      */
-    LONGER_BREAKING;
+    LONGER_BREAKING,
+
+    /**
+     * The finished
+     */
+    FINISHED;
 }

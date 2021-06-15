@@ -26,4 +26,11 @@ public interface Pomodoro extends BreakSupport, Serializable {
      * Starts the pomodoro set.
      */
     public void start();
+
+    /**
+     * Checks if the pomodoro is ongoing.
+     *
+     * @return {@code true} if the pomodoro is ongoing, otherwise {@code false}
+     */
+    public boolean isOngoing();
 }
