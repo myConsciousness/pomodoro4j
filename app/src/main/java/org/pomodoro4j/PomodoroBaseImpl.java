@@ -85,12 +85,13 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     @Override
     public boolean shouldEndBreak() {
         this.checkState(BreakPolicy.BREAKING_PRECONDITION);
-        return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getSplitTime()) >= this.configuration.getBreakMinutes();
-    }
 
-    @Override
-    public boolean shouldEndLongerBreak() {
-        return false;
+        if (this.pomodoroState == PomodoroState.LONGER_BREAKING) {
+            return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getSplitTime()) >= this.configuration
+                    .getLongerBreakMinutes();
+        }
+
+        return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getSplitTime()) >= this.configuration.getBreakMinutes();
     }
 
     @Override
