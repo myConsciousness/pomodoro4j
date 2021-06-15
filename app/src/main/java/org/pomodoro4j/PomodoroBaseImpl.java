@@ -39,7 +39,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     /**
      * The pomodoro timer
      */
-    private static final StopWatch POMODORO_TIMER = new StopWatch();
+    private final StopWatch POMODORO_TIMER = new StopWatch();
 
     /**
      * The pomodoro state

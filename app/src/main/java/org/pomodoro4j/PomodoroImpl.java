@@ -47,7 +47,8 @@ final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
 
     @Override
     public boolean isOngoing() {
-        return super.getPomodoroState() != PomodoroState.FINISHED;
+        return super.getPomodoroState() != PomodoroState.INITIALIZED
+                && super.getPomodoroState() != PomodoroState.FINISHED;
     }
 
     @Override
