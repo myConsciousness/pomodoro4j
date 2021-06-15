@@ -33,4 +33,25 @@ public interface Pomodoro extends BreakSupport, Serializable {
      * @return {@code true} if the pomodoro is ongoing, otherwise {@code false}
      */
     public boolean isOngoing();
+
+    /**
+     * Returns the start time.
+     *
+     * @return The start time
+     */
+    public long getStartTime();
+
+    /**
+     * Returns the time.
+     *
+     * @return The time
+     */
+    public long getTime();
+
+    /**
+     * Returns the split time.
+     *
+     * @return The split time
+     */
+    public long getSplitTime();
 }
