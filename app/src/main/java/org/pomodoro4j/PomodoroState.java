@@ -41,6 +41,11 @@ enum PomodoroState {
     LONGER_BREAKING,
 
     /**
+     * The stopped
+     */
+    STOPPED,
+
+    /**
      * The finished
      */
     FINISHED;

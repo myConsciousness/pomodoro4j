@@ -39,7 +39,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     /**
      * The pomodoro timer
      */
-    private final StopWatch POMODORO_TIMER = new StopWatch();
+    private final StopWatch POMODORO_TIMER = StopWatch.create();
 
     /**
      * The pomodoro state
@@ -51,6 +51,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     /**
      * The break counter
      */
+    @Getter(AccessLevel.PROTECTED)
     private Counter breakCounter = BreakCounter.newInstance();
 
     /**
@@ -72,7 +73,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     @Override
     public boolean shouldStartBreak() {
         this.checkState(BreakPolicy.START_PRECONDITION);
-        return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getTime()) >= this.configuration
+        return TimeUnit.NANOSECONDS.toMinutes(POMODORO_TIMER.getNanoTime()) >= this.configuration
                 .getConcentrationMinutes();
     }
 
@@ -86,12 +87,19 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     public boolean shouldEndBreak() {
         this.checkState(BreakPolicy.BREAKING_PRECONDITION);
 
-        if (this.pomodoroState == PomodoroState.LONGER_BREAKING) {
-            return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getSplitTime()) >= this.configuration
-                    .getLongerBreakMinutes();
-        }
+        POMODORO_TIMER.split();
 
-        return TimeUnit.MILLISECONDS.toMinutes(POMODORO_TIMER.getSplitTime()) >= this.configuration.getBreakMinutes();
+        try {
+            if (this.pomodoroState == PomodoroState.LONGER_BREAKING) {
+                return TimeUnit.NANOSECONDS.toMinutes(POMODORO_TIMER.getSplitNanoTime()) >= this.configuration
+                        .getLongerBreakMinutes();
+            }
+
+            return TimeUnit.NANOSECONDS.toMinutes(POMODORO_TIMER.getSplitNanoTime()) >= this.configuration
+                    .getBreakMinutes();
+        } finally {
+            POMODORO_TIMER.unsplit();
+        }
     }
 
     @Override
@@ -105,8 +113,6 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
             this.breakCounter.increment();
             this.pomodoroState = PomodoroState.BREAKING;
         }
-
-        POMODORO_TIMER.split();
     }
 
     @Override
@@ -118,8 +124,6 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
         } else {
             this.pomodoroState = PomodoroState.CONCENTRATING;
         }
-
-        POMODORO_TIMER.unsplit();
     }
 
     /**

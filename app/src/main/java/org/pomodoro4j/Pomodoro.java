@@ -35,6 +35,16 @@ public interface Pomodoro extends BreakSupport, Serializable {
     public boolean isOngoing();
 
     /**
+     * Stops the pomodoro set.
+     */
+    public void stop();
+
+    /**
+     * Resets the pomodoro set.
+     */
+    public void reset();
+
+    /**
      * Returns the start time.
      *
      * @return The start time

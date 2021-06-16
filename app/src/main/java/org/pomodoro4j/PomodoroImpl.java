@@ -52,6 +52,19 @@ final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
     }
 
     @Override
+    public void stop() {
+        super.getPomodoroTimer().stop();
+        super.setPomodoroState(PomodoroState.STOPPED);
+    }
+
+    @Override
+    public void reset() {
+        super.getPomodoroTimer().reset();
+        super.setPomodoroState(PomodoroState.INITIALIZED);
+        super.getBreakCounter().reset();
+    }
+
+    @Override
     public long getStartTime() {
         return super.getPomodoroTimer().getStartTime();
     }
