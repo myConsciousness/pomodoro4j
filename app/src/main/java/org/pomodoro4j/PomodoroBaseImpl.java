@@ -51,6 +51,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     /**
      * The break counter
      */
+    @Getter(AccessLevel.PROTECTED)
     private Counter breakCounter = BreakCounter.newInstance();
 
     /**
