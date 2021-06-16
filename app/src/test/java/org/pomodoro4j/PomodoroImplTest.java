@@ -143,7 +143,7 @@ public final class PomodoroImplTest {
             assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
 
             final boolean actual = assertDoesNotThrow(() -> sut.isBreakOngoing());
-            assertEquals(true, actual);
+            assertTrue(actual);
         }
 
         @Test
@@ -160,7 +160,7 @@ public final class PomodoroImplTest {
             assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
 
             final boolean actual = assertDoesNotThrow(() -> sut.isBreakOngoing());
-            assertEquals(false, actual);
+            assertFalse(actual);
         }
 
         @Test
@@ -189,6 +189,44 @@ public final class PomodoroImplTest {
 
             final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.isBreakOngoing());
             assertNotNull(actual);
+        }
+    }
+
+    @Nested
+    class TestShouldEndBreak {
+
+        @Test
+        void testShouldEndBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().setBreakMinutes(1).build()));
+
+            assertNotNull(sut);
+            assertEquals(PomodoroState.INITIALIZED, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+
+            TimeUnit.MINUTES.sleep(1);
+
+            final boolean actual = assertDoesNotThrow(() -> sut.shouldEndBreak());
+            assertTrue(actual);
+        }
+
+        @Test
+        void testWhenShouldNotEndBreak() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().setBreakMinutes(1).build()));
+
+            assertNotNull(sut);
+            assertEquals(PomodoroState.INITIALIZED, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+
+            final boolean actual = assertDoesNotThrow(() -> sut.shouldEndBreak());
+            assertFalse(actual);
         }
     }
 
