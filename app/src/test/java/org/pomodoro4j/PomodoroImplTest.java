@@ -129,6 +129,70 @@ public final class PomodoroImplTest {
     }
 
     @Nested
+    class TestIsBreakOngoing {
+
+        @Test
+        void testIsBreakOngoing() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+
+            final boolean actual = assertDoesNotThrow(() -> sut.isBreakOngoing());
+            assertEquals(true, actual);
+        }
+
+        @Test
+        void testWhenBreakIsNotOngoing() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.endBreak());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+
+            final boolean actual = assertDoesNotThrow(() -> sut.isBreakOngoing());
+            assertEquals(false, actual);
+        }
+
+        @Test
+        void testIsBreakOngoingBeforeStartBreak() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
+
+            assertNotNull(sut);
+
+            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.isBreakOngoing());
+            assertNotNull(actual);
+        }
+
+        @Test
+        void testWhenPomodoroIsFinished() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().setCountUntilLongerBreak(0).build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.endBreak());
+            assertEquals(PomodoroState.FINISHED, sut.getPomodoroState());
+
+            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.isBreakOngoing());
+            assertNotNull(actual);
+        }
+    }
+
+    @Nested
     class TestStartBreak {
 
         @Test
