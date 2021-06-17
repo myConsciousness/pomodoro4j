@@ -365,4 +365,29 @@ public final class PomodoroImplTest {
             assertEquals(PomodoroState.FINISHED, sut.getPomodoroState());
         }
     }
+
+    @Test
+    void testIntegration() {
+        final PomodoroImpl sut = assertDoesNotThrow(
+                () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().setConcentrationMinutes(2).setBreakMinutes(1)
+                        .setCountUntilLongerBreak(3).setLongerBreakMinutes(2).build()));
+
+        assertNotNull(sut);
+        assertDoesNotThrow(() -> sut.start());
+        assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+
+        while (sut.isOngoing()) {
+            if (sut.shouldStartBreak()) {
+                sut.startBreak();
+
+                while (sut.isBreakOngoing()) {
+                    if (sut.shouldEndBreak()) {
+                        sut.endBreak();
+                    }
+                }
+            }
+        }
+
+        assertEquals(PomodoroState.FINISHED, sut.getPomodoroState());
+    }
 }
