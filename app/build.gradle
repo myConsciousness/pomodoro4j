@@ -16,6 +16,7 @@ import io.franzbecker.gradle.lombok.task.DelombokTask
 
 plugins {
     id 'java'
+    id 'maven-publish'
     id 'io.franzbecker.gradle-lombok' version '4.0.0'
 }
 
