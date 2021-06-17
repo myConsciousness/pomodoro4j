@@ -85,10 +85,24 @@ public final class PropertyConfiguration extends ConfigurationBase {
      */
     private static final int DEFAULT_COUNT_LONGER_BREAK = 4;
 
+    /**
+     * The constuctor.
+     *
+     * <p>
+     * Searches for property definition files from the root.
+     */
     public PropertyConfiguration() {
         this("/");
     }
 
+    /**
+     * The constructor.
+     *
+     * <p>
+     * Loads the property from the input stream.
+     *
+     * @param inputStream The input stream
+     */
     public PropertyConfiguration(final InputStream inputStream) {
         super();
 
@@ -199,12 +213,12 @@ public final class PropertyConfiguration extends ConfigurationBase {
 
     /**
      * passing "/foo/bar" as treePath will result:<br>
-     * 1. load [twitter4j.]restBaseURL<br>
-     * 2. override the value with foo.[twitter4j.]restBaseURL<br>
-     * 3. override the value with foo.bar.[twitter4j.]restBaseURL<br>
+     * 1. load [pomodoro4j.]restBaseURL<br>
+     * 2. override the value with foo.[pomodoro4j.]restBaseURL<br>
+     * 3. override the value with foo.bar.[pomodoro4j.]restBaseURL<br>
      *
-     * @param props    properties to be loaded
-     * @param treePath the path
+     * @param properties properties to be loaded
+     * @param treePath   the path
      */
     private void setFieldsWithTreePath(@NonNull final Properties properties, @NonNull final String treePath) {
 
