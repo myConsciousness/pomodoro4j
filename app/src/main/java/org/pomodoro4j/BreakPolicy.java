@@ -41,7 +41,7 @@ enum BreakPolicy {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
             if (pomodoroState != PomodoroState.CONCENTRATING && pomodoroState != PomodoroState.BREAKING
-                    && pomodoroState != PomodoroState.LONGER_BREAKING) {
+                    && pomodoroState != PomodoroState.LONGER_BREAKING && pomodoroState != PomodoroState.FINISHED) {
                 throw new PomodoroException();
             }
         }
