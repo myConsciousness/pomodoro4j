@@ -228,6 +228,40 @@ public final class PomodoroImplTest {
             final boolean actual = assertDoesNotThrow(() -> sut.shouldEndBreak());
             assertFalse(actual);
         }
+
+        @Test
+        void testShouldEndLongerBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(() -> new PomodoroImpl(
+                    ConfigurationBuilder.newBuilder().setCountUntilLongerBreak(0).setLongerBreakMinutes(1).build()));
+
+            assertNotNull(sut);
+            assertEquals(PomodoroState.INITIALIZED, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
+
+            TimeUnit.MINUTES.sleep(1);
+
+            final boolean actual = assertDoesNotThrow(() -> sut.shouldEndBreak());
+            assertTrue(actual);
+        }
+
+        @Test
+        void testWhenShouldNotEndLongerBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(() -> new PomodoroImpl(
+                    ConfigurationBuilder.newBuilder().setCountUntilLongerBreak(0).setLongerBreakMinutes(1).build()));
+
+            assertNotNull(sut);
+            assertEquals(PomodoroState.INITIALIZED, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.start());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
+
+            final boolean actual = assertDoesNotThrow(() -> sut.shouldEndBreak());
+            assertFalse(actual);
+        }
     }
 
     @Nested

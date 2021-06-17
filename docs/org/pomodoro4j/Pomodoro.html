@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":6};
+<script type="text/javascript">var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
 var tabs = {65535:["t0","\u3059\u3079\u3066\u306E\u30E1\u30BD\u30C3\u30C9"],2:["t2","\u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u30FB\u30E1\u30BD\u30C3\u30C9"],4:["t3","abstract\u30E1\u30BD\u30C3\u30C9"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -78,11 +78,11 @@ loadScripts(document, 'script');</script>
 <section class="description">
 <dl class="notes">
 <dt>すべてのスーパーインタフェース:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a></code></dd>
+<dd><code><a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="type-name-label">Pomodoro</span>
-extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a></pre>
+extends <a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a></pre>
 <dl class="notes">
 <dt>導入されたバージョン:</dt>
 <dd>1.0.0</dd>
@@ -107,16 +107,61 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 </thead>
 <tbody>
 <tr class="alt-color" id="i0">
+<td class="col-first"><code>long</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getSplitTime()">getSplitTime</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Returns the split time.</div>
+</td>
+</tr>
+<tr class="row-color" id="i1">
+<td class="col-first"><code>long</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getStartTime()">getStartTime</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Returns the start time.</div>
+</td>
+</tr>
+<tr class="alt-color" id="i2">
+<td class="col-first"><code>long</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getTime()">getTime</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Returns the time.</div>
+</td>
+</tr>
+<tr class="row-color" id="i3">
+<td class="col-first"><code>boolean</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isOngoing()">isOngoing</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Checks if the pomodoro is ongoing.</div>
+</td>
+</tr>
+<tr class="alt-color" id="i4">
+<td class="col-first"><code>void</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#reset()">reset</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Resets the pomodoro set.</div>
+</td>
+</tr>
+<tr class="row-color" id="i5">
 <td class="col-first"><code>void</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#start()">start</a></span>()</code></th>
 <td class="col-last">
 <div class="block">Starts the pomodoro set.</div>
 </td>
 </tr>
+<tr class="alt-color" id="i6">
+<td class="col-first"><code>void</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#stop()">stop</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Stops the pomodoro set.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="methods.inherited.from.class.org.pomodoro4j.BreakSupport">インタフェースから継承されたメソッド&nbsp;org.pomodoro4j.<a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></h3>
+<code><a href="BreakSupport.html#endBreak()">endBreak</a>, <a href="BreakSupport.html#isBreakOngoing()">isBreakOngoing</a>, <a href="BreakSupport.html#shouldEndBreak()">shouldEndBreak</a>, <a href="BreakSupport.html#shouldStartBreak()">shouldStartBreak</a>, <a href="BreakSupport.html#startBreak()">startBreak</a></code></div>
 </section>
 </li>
 </ul>
@@ -133,6 +178,64 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <h3>start</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="member-name">start</span>()</div>
 <div class="block">Starts the pomodoro set.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isOngoing()">
+<h3>isOngoing</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="member-name">isOngoing</span>()</div>
+<div class="block">Checks if the pomodoro is ongoing.</div>
+<dl class="notes">
+<dt>戻り値:</dt>
+<dd><code>true</code> if the pomodoro is ongoing, otherwise <code>false</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="stop()">
+<h3>stop</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="member-name">stop</span>()</div>
+<div class="block">Stops the pomodoro set.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="reset()">
+<h3>reset</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="member-name">reset</span>()</div>
+<div class="block">Resets the pomodoro set.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getStartTime()">
+<h3>getStartTime</h3>
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="member-name">getStartTime</span>()</div>
+<div class="block">Returns the start time.</div>
+<dl class="notes">
+<dt>戻り値:</dt>
+<dd>The start time</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getTime()">
+<h3>getTime</h3>
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="member-name">getTime</span>()</div>
+<div class="block">Returns the time.</div>
+<dl class="notes">
+<dt>戻り値:</dt>
+<dd>The time</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSplitTime()">
+<h3>getSplitTime</h3>
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="member-name">getSplitTime</span>()</div>
+<div class="block">Returns the split time.</div>
+<dl class="notes">
+<dt>戻り値:</dt>
+<dd>The split time</dd>
+</dl>
 </section>
 </li>
 </ul>

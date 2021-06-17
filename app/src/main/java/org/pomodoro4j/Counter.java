@@ -14,11 +14,13 @@
 
 package org.pomodoro4j;
 
+import java.io.Serializable;
+
 /**
  * @author Kato Shinya
  * @since 1.0.0
  */
-interface Counter {
+interface Counter extends Serializable {
 
     /**
      * Returns the count.

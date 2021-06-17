@@ -82,6 +82,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <pre>public final class <span class="type-name-label">ConfigurationContext</span>
 extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a></pre>
+<dl class="notes">
+<dt>導入されたバージョン:</dt>
+<dd>1.0.0</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -132,12 +136,17 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <tr class="row-color" id="i1">
 <td class="col-first"><code>static <a href="Configuration.html" title="org.pomodoro4j.conf内のインタフェース">Configuration</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getInstance()">getInstance</a></span>()</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Returns the new insrance of <a href="ConfigurationFactory.html" title="org.pomodoro4j.conf内のインタフェース"><code>ConfigurationFactory</code></a> .</div>
+</td>
 </tr>
 <tr class="alt-color" id="i2">
 <td class="col-first"><code>static <a href="Configuration.html" title="org.pomodoro4j.conf内のインタフェース">Configuration</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getInstance(java.lang.String)">getInstance</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;configTreePath)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Returns the new instance of <a href="ConfigurationFactory.html" title="org.pomodoro4j.conf内のインタフェース"><code>ConfigurationFactory</code></a> based on the tree
+ path passed as an argument.</div>
+</td>
 </tr>
 <tr class="row-color" id="i3">
 <td class="col-first"><code>int</code></td>
@@ -185,6 +194,11 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <section class="detail" id="getInstance()">
 <h3>getInstance</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Configuration.html" title="org.pomodoro4j.conf内のインタフェース">Configuration</a></span>&nbsp;<span class="member-name">getInstance</span>()</div>
+<div class="block">Returns the new insrance of <a href="ConfigurationFactory.html" title="org.pomodoro4j.conf内のインタフェース"><code>ConfigurationFactory</code></a> .</div>
+<dl class="notes">
+<dt>戻り値:</dt>
+<dd>The new instance of <a href="ConfigurationFactory.html" title="org.pomodoro4j.conf内のインタフェース"><code>ConfigurationFactory</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -192,6 +206,17 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <h3>getInstance</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Configuration.html" title="org.pomodoro4j.conf内のインタフェース">Configuration</a></span>&nbsp;<span class="member-name">getInstance</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;configTreePath)</span></div>
+<div class="block">Returns the new instance of <a href="ConfigurationFactory.html" title="org.pomodoro4j.conf内のインタフェース"><code>ConfigurationFactory</code></a> based on the tree
+ path passed as an argument.</div>
+<dl class="notes">
+<dt>パラメータ:</dt>
+<dd><code>configTreePath</code> - The tree path of configuration</dd>
+<dt>戻り値:</dt>
+<dd>The new instance of <a href="ConfigurationFactory.html" title="org.pomodoro4j.conf内のインタフェース"><code>ConfigurationFactory</code></a> based on the tree
+         path</dd>
+<dt>例外:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">NullPointerException</a></code> - If <code>null</code> is passed as an argument</dd>
+</dl>
 </section>
 </li>
 <li>
