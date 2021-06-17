@@ -121,6 +121,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
 
         if (this.pomodoroState == PomodoroState.LONGER_BREAKING) {
             this.pomodoroState = PomodoroState.FINISHED;
+            this.breakCounter.reset();
         } else {
             this.pomodoroState = PomodoroState.CONCENTRATING;
         }

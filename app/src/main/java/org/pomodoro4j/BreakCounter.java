@@ -14,8 +14,6 @@
 
 package org.pomodoro4j;
 
-import java.io.Serializable;
-
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -29,7 +27,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor(staticName = "newInstance", access = AccessLevel.PACKAGE)
-final class BreakCounter implements Counter, Serializable {
+final class BreakCounter implements Counter {
 
     /**
      * The count

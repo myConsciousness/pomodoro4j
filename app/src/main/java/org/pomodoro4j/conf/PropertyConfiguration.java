@@ -106,6 +106,13 @@ public final class PropertyConfiguration extends ConfigurationBase {
         this.setFieldsWithTreePath(properties, treePath);
     }
 
+    /**
+     * The constructor.
+     *
+     * @param treePath The tree path
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
     protected PropertyConfiguration(@NonNull final String treePath) {
         super();
 
