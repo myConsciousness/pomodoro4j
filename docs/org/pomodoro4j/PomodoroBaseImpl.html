@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","\u3059\u3079\u3066\u306E\u30E1\u30BD\u30C3\u30C9"],2:["t2","\u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u30FB\u30E1\u30BD\u30C3\u30C9"],8:["t4","concrete\u30E1\u30BD\u30C3\u30C9"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -48,13 +48,13 @@ loadScripts(document, 'script');</script>
 <li>概要:&nbsp;</li>
 <li>ネスト&nbsp;|&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">コンストラクタ</a>&nbsp;|&nbsp;</li>
+<li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">メソッド</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>詳細:&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">コンストラクタ</a>&nbsp;|&nbsp;</li>
+<li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">メソッド</a></li>
 </ul>
 </div>
@@ -96,29 +96,6 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 </section>
 <section class="summary">
 <ul class="summary-list">
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<li>
-<section class="constructor-summary" id="constructor.summary">
-<h2>コンストラクタの概要</h2>
-<div class="member-summary">
-<table class="summary-table">
-<caption><span>コンストラクタ</span></caption>
-<thead>
-<tr>
-<th class="col-first" scope="col">コンストラクタ</th>
-<th class="col-last" scope="col">説明</th>
-</tr>
-</thead>
-<tbody>
-<tr class="alt-color">
-<th class="col-constructor-name" scope="row"><code><span class="member-name-link"><a href="#%3Cinit%3E(org.pomodoro4j.conf.Configuration)">PomodoroBaseImpl</a></span>&#8203;(<a href="conf/Configuration.html" title="org.pomodoro4j.conf内のインタフェース">Configuration</a>&nbsp;configuration)</code></th>
-<td class="col-last">&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</li>
 <!-- ========== METHOD SUMMARY =========== -->
 <li>
 <section class="method-summary" id="method.summary">
@@ -136,31 +113,51 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 </thead>
 <tbody>
 <tr class="alt-color" id="i0">
+<td class="col-first"><code>void</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#endBreak()">endBreak</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Ends the break.</div>
+</td>
+</tr>
+<tr class="row-color" id="i1">
 <td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;o)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i1">
+<tr class="alt-color" id="i2">
 <td class="col-first"><code>int</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i2">
-<td class="col-first"><code>boolean</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isBreakOngoing()">isBreakOngoing</a></span>()</code></th>
-<td class="col-last">&nbsp;</td>
-</tr>
 <tr class="row-color" id="i3">
 <td class="col-first"><code>boolean</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#shouldEndBreak()">shouldEndBreak</a></span>()</code></th>
-<td class="col-last">&nbsp;</td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isBreakOngoing()">isBreakOngoing</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Checkes if a break is ongoing.</div>
+</td>
 </tr>
 <tr class="alt-color" id="i4">
 <td class="col-first"><code>boolean</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#shouldStartBreak()">shouldStartBreak</a></span>()</code></th>
-<td class="col-last">&nbsp;</td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#shouldEndBreak()">shouldEndBreak</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Checkes if a break should be ended.</div>
+</td>
 </tr>
 <tr class="row-color" id="i5">
+<td class="col-first"><code>boolean</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#shouldStartBreak()">shouldStartBreak</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Checkes if a break should be started.</div>
+</td>
+</tr>
+<tr class="alt-color" id="i6">
+<td class="col-first"><code>void</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#startBreak()">startBreak</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Starts the break.</div>
+</td>
+</tr>
+<tr class="row-color" id="i7">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#toString()">toString</a></span>()</code></th>
 <td class="col-last">&nbsp;</td>
@@ -178,20 +175,6 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<li>
-<section class="constructor-details" id="constructor.detail">
-<h2>コンストラクタの詳細</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="&lt;init&gt;(org.pomodoro4j.conf.Configuration)">
-<h3>PomodoroBaseImpl</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="member-name">PomodoroBaseImpl</span>&#8203;(<span class="parameters"><a href="conf/Configuration.html" title="org.pomodoro4j.conf内のインタフェース">Configuration</a>&nbsp;configuration)</span></div>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ============ METHOD DETAIL ========== -->
 <li>
 <section class="method-details" id="method.detail">
@@ -201,9 +184,13 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 <section class="detail" id="shouldStartBreak()">
 <h3>shouldStartBreak</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="member-name">shouldStartBreak</span>()</div>
+<div class="block"><span class="descfrm-type-label">インタフェースからコピーされた説明:&nbsp;<code><a href="BreakSupport.html#shouldStartBreak()">BreakSupport</a></code></span></div>
+<div class="block">Checkes if a break should be started.</div>
 <dl class="notes">
 <dt>定義:</dt>
 <dd><code><a href="BreakSupport.html#shouldStartBreak()">shouldStartBreak</a></code>&nbsp;インタフェース内&nbsp;<code><a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></code></dd>
+<dt>戻り値:</dt>
+<dd><code>true</code> if a break should be started, otherwise <code>false</code></dd>
 </dl>
 </section>
 </li>
@@ -211,9 +198,13 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 <section class="detail" id="isBreakOngoing()">
 <h3>isBreakOngoing</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="member-name">isBreakOngoing</span>()</div>
+<div class="block"><span class="descfrm-type-label">インタフェースからコピーされた説明:&nbsp;<code><a href="BreakSupport.html#isBreakOngoing()">BreakSupport</a></code></span></div>
+<div class="block">Checkes if a break is ongoing.</div>
 <dl class="notes">
 <dt>定義:</dt>
 <dd><code><a href="BreakSupport.html#isBreakOngoing()">isBreakOngoing</a></code>&nbsp;インタフェース内&nbsp;<code><a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></code></dd>
+<dt>戻り値:</dt>
+<dd><code>true</code> if a break is ongoing, otherwise <code>false</code></dd>
 </dl>
 </section>
 </li>
@@ -221,9 +212,37 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 <section class="detail" id="shouldEndBreak()">
 <h3>shouldEndBreak</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="member-name">shouldEndBreak</span>()</div>
+<div class="block"><span class="descfrm-type-label">インタフェースからコピーされた説明:&nbsp;<code><a href="BreakSupport.html#shouldEndBreak()">BreakSupport</a></code></span></div>
+<div class="block">Checkes if a break should be ended.</div>
 <dl class="notes">
 <dt>定義:</dt>
 <dd><code><a href="BreakSupport.html#shouldEndBreak()">shouldEndBreak</a></code>&nbsp;インタフェース内&nbsp;<code><a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></code></dd>
+<dt>戻り値:</dt>
+<dd><code>true</code> if a break should be ended, otherwise <code>false</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="startBreak()">
+<h3>startBreak</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">startBreak</span>()</div>
+<div class="block"><span class="descfrm-type-label">インタフェースからコピーされた説明:&nbsp;<code><a href="BreakSupport.html#startBreak()">BreakSupport</a></code></span></div>
+<div class="block">Starts the break.</div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code><a href="BreakSupport.html#startBreak()">startBreak</a></code>&nbsp;インタフェース内&nbsp;<code><a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="endBreak()">
+<h3>endBreak</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">endBreak</span>()</div>
+<div class="block"><span class="descfrm-type-label">インタフェースからコピーされた説明:&nbsp;<code><a href="BreakSupport.html#endBreak()">BreakSupport</a></code></span></div>
+<div class="block">Ends the break.</div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code><a href="BreakSupport.html#endBreak()">endBreak</a></code>&nbsp;インタフェース内&nbsp;<code><a href="BreakSupport.html" title="org.pomodoro4j内のインタフェース">BreakSupport</a></code></dd>
 </dl>
 </section>
 </li>
@@ -285,13 +304,13 @@ implements <a href="PomodoroBase.html" title="org.pomodoro4j内のインタフ�
 <li>概要:&nbsp;</li>
 <li>ネスト&nbsp;|&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">コンストラクタ</a>&nbsp;|&nbsp;</li>
+<li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">メソッド</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>詳細:&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">コンストラクタ</a>&nbsp;|&nbsp;</li>
+<li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">メソッド</a></li>
 </ul>
 </div>
