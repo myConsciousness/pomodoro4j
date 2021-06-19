@@ -186,9 +186,7 @@ public final class PomodoroImplTest {
             assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
             assertDoesNotThrow(() -> sut.endBreak());
             assertEquals(PomodoroState.FINISHED, sut.getPomodoroState());
-
-            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.isBreakOngoing());
-            assertNotNull(actual);
+            assertDoesNotThrow(() -> sut.isBreakOngoing());
         }
     }
 

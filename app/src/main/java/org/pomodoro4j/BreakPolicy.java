@@ -22,40 +22,59 @@ import lombok.NonNull;
  */
 enum BreakPolicy {
 
-    /**
-     * The start precondition
-     */
-    START_PRECONDITION {
+    SHOULD_START_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState != PomodoroState.CONCENTRATING) {
-                throw new PomodoroException();
+            if (pomodoroState == PomodoroState.CONCENTRATING) {
+                return;
             }
+
+            throw new PomodoroException();
         }
     },
 
-    /**
-     * The breaking precondition
-     */
-    BREAKING_PRECONDITION {
+    IS_BREAK_ONGOING {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState != PomodoroState.CONCENTRATING && pomodoroState != PomodoroState.BREAKING
-                    && pomodoroState != PomodoroState.LONGER_BREAKING && pomodoroState != PomodoroState.FINISHED) {
-                throw new PomodoroException();
+            if (pomodoroState == PomodoroState.CONCENTRATING || pomodoroState == PomodoroState.BREAKING
+                    || pomodoroState == PomodoroState.LONGER_BREAKING || pomodoroState == PomodoroState.FINISHED) {
+                return;
             }
+
+            throw new PomodoroException();
         }
     },
 
-    /**
-     * The end precondition
-     */
-    END_PRECONDITION {
+    SHOULD_END_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState != PomodoroState.BREAKING && pomodoroState != PomodoroState.LONGER_BREAKING) {
-                throw new PomodoroException();
+            if (pomodoroState == PomodoroState.BREAKING || pomodoroState == PomodoroState.LONGER_BREAKING) {
+                return;
             }
+
+            throw new PomodoroException();
+        }
+    },
+
+    START_BREAK {
+        @Override
+        public void checkState(@NonNull final PomodoroState pomodoroState) {
+            if (pomodoroState == PomodoroState.CONCENTRATING) {
+                return;
+            }
+
+            throw new PomodoroException();
+        }
+    },
+
+    END_BREAK {
+        @Override
+        public void checkState(@NonNull final PomodoroState pomodoroState) {
+            if (pomodoroState == PomodoroState.BREAKING || pomodoroState == PomodoroState.LONGER_BREAKING) {
+                return;
+            }
+
+            throw new PomodoroException();
         }
     };
 

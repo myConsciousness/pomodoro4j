@@ -72,20 +72,20 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     @Override
     public boolean shouldStartBreak() {
-        this.checkState(BreakPolicy.START_PRECONDITION);
+        this.checkState(BreakPolicy.SHOULD_START_BREAK);
         return TimeUnit.NANOSECONDS.toMinutes(POMODORO_TIMER.getNanoTime()) >= this.configuration
                 .getConcentrationMinutes();
     }
 
     @Override
     public boolean isBreakOngoing() {
-        this.checkState(BreakPolicy.BREAKING_PRECONDITION);
+        this.checkState(BreakPolicy.IS_BREAK_ONGOING);
         return this.pomodoroState == PomodoroState.BREAKING || this.pomodoroState == PomodoroState.LONGER_BREAKING;
     }
 
     @Override
     public boolean shouldEndBreak() {
-        this.checkState(BreakPolicy.BREAKING_PRECONDITION);
+        this.checkState(BreakPolicy.SHOULD_END_BREAK);
 
         POMODORO_TIMER.split();
 
@@ -104,7 +104,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     @Override
     public void startBreak() {
-        this.checkState(BreakPolicy.START_PRECONDITION);
+        this.checkState(BreakPolicy.START_BREAK);
 
         if (this.breakCounter.getCount() >= this.configuration.getCountUntilLongerBreak()) {
             this.breakCounter.reset();
@@ -117,7 +117,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
 
     @Override
     public void endBreak() {
-        this.checkState(BreakPolicy.END_PRECONDITION);
+        this.checkState(BreakPolicy.END_BREAK);
 
         if (this.pomodoroState == PomodoroState.LONGER_BREAKING) {
             this.pomodoroState = PomodoroState.FINISHED;
