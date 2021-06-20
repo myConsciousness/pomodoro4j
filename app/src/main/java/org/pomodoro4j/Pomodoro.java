@@ -23,16 +23,12 @@ import java.io.Serializable;
 public interface Pomodoro extends BreakSupport, Serializable {
 
     /**
-     * Starts the pomodoro set.
-     */
-    public void start();
-
-    /**
-     * Checks if the pomodoro is ongoing.
+     * Starts a pomodoro set and returns {@code true} for as long as this started
+     * pomodoro set is ongoing.
      *
-     * @return {@code true} if the pomodoro is ongoing, otherwise {@code false}
+     * @return {@code true} if the Pomodoro set is ongoing, otherwise {@code false}
      */
-    public boolean isOngoing();
+    public boolean performs();
 
     /**
      * Stops the pomodoro set.
