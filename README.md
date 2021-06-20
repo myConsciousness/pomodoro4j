@@ -38,7 +38,7 @@ Therefore, users of Pomodoro4J can reproduce the real Pomodoro Technique without
 
 > **_Note:_**</br>
 > Replace version you want to use. Check the latest [Packages](https://github.com/myConsciousness/pomodoro4j/packages).</br>
-> Please contact me for a token to download the GitHub package.
+> Please contact me for a token to download the GitHub package.</br>
 > Alternatively, you can download it directly as a zip file.
 
 **_Maven_**
