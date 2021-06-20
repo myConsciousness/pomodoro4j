@@ -30,25 +30,25 @@ abstract class ConfigurationBase implements Configuration {
      * The concentration minutes
      */
     @Getter
-    private int concentrationMinutes;
+    private int concentrationMinutes = 25;
 
     /**
      * The break minutes
      */
     @Getter
-    private int breakMinutes;
+    private int breakMinutes = 5;
 
     /**
      * The longer break minutes
      */
     @Getter
-    private int longerBreakMinutes;
+    private int longerBreakMinutes = 15;
 
     /**
      * The count until longer break
      */
     @Getter
-    private int countUntilLongerBreak;
+    private int countUntilLongerBreak = 4;
 
     @Override
     public Configuration setConcentrationMinutes(int concentrationMinutes) {
