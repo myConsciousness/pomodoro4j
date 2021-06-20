@@ -196,4 +196,4 @@ Regardless of the means or content of communication, I would love to hear from y
 - [Release Note](https://github.com/myConsciousness/pomodoro4j/releases)
 - [Package](https://github.com/myConsciousness/pomodoro4j/packages)
 - [File a Bug](https://github.com/myConsciousness/pomodoro4j/issues)
-- [Reference](https://myconsciousness.github.io/pomodoro4j/package-summary.html)
+- [Reference](https://myconsciousness.github.io/pomodoro4j/)
