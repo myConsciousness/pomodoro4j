@@ -40,13 +40,12 @@ final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
     }
 
     @Override
-    public void start() {
-        super.getPomodoroTimer().start();
-        super.setPomodoroState(PomodoroState.CONCENTRATING);
-    }
+    public boolean performs() {
+        if (super.getPomodoroState() == PomodoroState.INITIALIZED) {
+            super.getPomodoroTimer().start();
+            super.setPomodoroState(PomodoroState.CONCENTRATING);
+        }
 
-    @Override
-    public boolean isOngoing() {
         return super.getPomodoroState() != PomodoroState.INITIALIZED
                 && super.getPomodoroState() != PomodoroState.FINISHED;
     }
@@ -59,9 +58,9 @@ final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
 
     @Override
     public void reset() {
+        super.getBreakCounter().reset();
         super.getPomodoroTimer().reset();
         super.setPomodoroState(PomodoroState.INITIALIZED);
-        super.getBreakCounter().reset();
     }
 
     @Override

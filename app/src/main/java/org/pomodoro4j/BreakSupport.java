@@ -50,4 +50,14 @@ public interface BreakSupport {
      * Ends the break.
      */
     public void endBreak();
+
+    /**
+     * Starts the break if should start.
+     */
+    public void startBreakIfShould();
+
+    /**
+     * Ends the break if should end.
+     */
+    public void endBreakIfShould();
 }

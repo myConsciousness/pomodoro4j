@@ -107,7 +107,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
         this.checkState(BreakPolicy.START_BREAK);
 
         if (this.breakCounter.getCount() >= this.configuration.getCountUntilLongerBreak()) {
-            this.breakCounter.reset();
+            this.breakCounter.increment();
             this.pomodoroState = PomodoroState.LONGER_BREAKING;
         } else {
             this.breakCounter.increment();
@@ -124,6 +124,20 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
             this.breakCounter.reset();
         } else {
             this.pomodoroState = PomodoroState.CONCENTRATING;
+        }
+    }
+
+    @Override
+    public void startBreakIfShould() {
+        if (this.shouldStartBreak()) {
+            this.startBreak();
+        }
+    }
+
+    @Override
+    public void endBreakIfShould() {
+        if (this.shouldEndBreak()) {
+            this.endBreak();
         }
     }
 
