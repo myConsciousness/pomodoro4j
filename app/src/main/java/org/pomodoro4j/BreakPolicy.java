@@ -22,6 +22,9 @@ import lombok.NonNull;
  */
 enum BreakPolicy {
 
+    /**
+     * {@link BreakSupport#shouldStartBreak()}
+     */
     SHOULD_START_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
@@ -33,6 +36,9 @@ enum BreakPolicy {
         }
     },
 
+    /**
+     * {@link BreakSupport#isBreakOngoing()}
+     */
     IS_BREAK_ONGOING {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
@@ -46,6 +52,9 @@ enum BreakPolicy {
         }
     },
 
+    /**
+     * {@link BreakSupport#shouldEndBreak()}
+     */
     SHOULD_END_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
@@ -58,6 +67,9 @@ enum BreakPolicy {
         }
     },
 
+    /**
+     * {@link BreakSupport#startBreak()}
+     */
     START_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
@@ -69,6 +81,9 @@ enum BreakPolicy {
         }
     },
 
+    /**
+     * {@link BreakSupport#endBreak()}
+     */
     END_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
@@ -81,5 +96,10 @@ enum BreakPolicy {
         }
     };
 
+    /**
+     * Checks the state of the Pomodoro when executing a specific task.
+     *
+     * @param pomodoroState The pomodoro state
+     */
     public abstract void checkState(@NonNull final PomodoroState pomodoroState);
 }
