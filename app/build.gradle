@@ -34,6 +34,7 @@ publishing {
 
     publications {
         group 'org.pomodoro4j'
+        version = 'v1.0.0'
 
         gpr(MavenPublication) {
             artifactId = 'pomodoro4j'
