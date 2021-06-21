@@ -357,6 +357,120 @@ public final class PomodoroImplTest {
     }
 
     @Nested
+    class TestStartBreakIfSHould {
+
+        @Test
+        void testWhenShouldStartBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().setConcentrationMinutes(1).build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.performs());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+
+            TimeUnit.MINUTES.sleep(1);
+
+            assertDoesNotThrow(() -> sut.startBreakIfShould());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+        }
+
+        @Test
+        void testStartBreakBeforeStart() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
+
+            assertNotNull(sut);
+
+            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.startBreakIfShould());
+            assertNotNull(actual);
+            assertEquals(PomodoroState.INITIALIZED, sut.getPomodoroState());
+        }
+
+        @Test
+        void testStartLongerBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(() -> new PomodoroImpl(
+                    ConfigurationBuilder.newBuilder().setConcentrationMinutes(1).setCountUntilLongerBreak(1).build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.performs());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+
+            TimeUnit.MINUTES.sleep(1);
+
+            assertDoesNotThrow(() -> sut.startBreakIfShould());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.endBreak());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
+        }
+    }
+
+    @Nested
+    class TestEndBreakIfShould {
+
+        @Test
+        void testWhenShouldEndBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(() -> new PomodoroImpl(
+                    ConfigurationBuilder.newBuilder().setBreakMinutes(1).setCountUntilLongerBreak(1).build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.performs());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
+
+            TimeUnit.MINUTES.sleep(1);
+
+            assertDoesNotThrow(() -> sut.endBreakIfShould());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+        }
+
+        @Test
+        void testEndBreakBeforeStart() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
+
+            assertNotNull(sut);
+
+            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.endBreakIfShould());
+            assertNotNull(actual);
+            assertEquals(PomodoroState.INITIALIZED, sut.getPomodoroState());
+        }
+
+        @Test
+        void testEndBreakBeforeStartBreak() {
+            final PomodoroImpl sut = assertDoesNotThrow(
+                    () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.performs());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+
+            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.endBreakIfShould());
+            assertNotNull(actual);
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+        }
+
+        @Test
+        void testWhenShouldEndLongerBreak() throws InterruptedException {
+            final PomodoroImpl sut = assertDoesNotThrow(() -> new PomodoroImpl(
+                    ConfigurationBuilder.newBuilder().setLongerBreakMinutes(1).setCountUntilLongerBreak(0).build()));
+
+            assertNotNull(sut);
+            assertDoesNotThrow(() -> sut.performs());
+            assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
+            assertDoesNotThrow(() -> sut.startBreak());
+            assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
+
+            TimeUnit.MINUTES.sleep(1);
+
+            assertDoesNotThrow(() -> sut.endBreakIfShould());
+            assertEquals(PomodoroState.FINISHED, sut.getPomodoroState());
+        }
+    }
+
+    @Nested
     class TestIntegration {
 
         @Test

@@ -12,32 +12,28 @@
  * the License.
  */
 
-package org.pomodoro4j.conf;
+package org.pomodoro4j;
 
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
+import java.io.Serializable;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Kato Shinya
  * @since 1.0.0
  */
-@ToString
-@EqualsAndHashCode
-public final class PropertyConfigurationFactory implements ConfigurationFactory {
+@Data
+@NoArgsConstructor(staticName = "newInstance")
+final class SplitTime implements Serializable {
 
-    @Override
-    public Configuration getInstance() {
-        return new PropertyConfiguration();
-    }
+    /**
+     * The milliseconds
+     */
+    private long milliseconds;
 
-    @Override
-    public Configuration getInstance(@NonNull String configTreePath) {
-        return new PropertyConfiguration(configTreePath);
-    }
-
-    @Override
-    public void dispose() {
-        // Do nothing
-    }
+    /**
+     * The nanoseconds
+     */
+    private long nanoseconds;
 }

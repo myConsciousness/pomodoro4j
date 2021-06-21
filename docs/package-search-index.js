@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"org.pomodoro4j"},{"l":"org.pomodoro4j.conf"},{"l":"すべてのパッケージ","u":"allpackages-index.html"}];updateSearchResults();
+packageSearchIndex = [{"l":"org.pomodoro4j","h":"","u":""},{"l":"org.pomodoro4j.conf","h":"","u":""},{"l":"すべてのパッケージ","h":"","u":"allpackages-index.html"}]

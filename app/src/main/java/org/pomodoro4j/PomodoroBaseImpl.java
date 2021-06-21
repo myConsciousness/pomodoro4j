@@ -55,6 +55,12 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     private Counter breakCounter = BreakCounter.newInstance();
 
     /**
+     * The split time
+     */
+    @Getter(AccessLevel.PROTECTED)
+    private SplitTime splitTime = SplitTime.newInstance();
+
+    /**
      * The configuration
      */
     private Configuration configuration;
@@ -98,6 +104,8 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
             return TimeUnit.NANOSECONDS.toMinutes(POMODORO_TIMER.getSplitNanoTime()) >= this.configuration
                     .getBreakMinutes();
         } finally {
+            this.splitTime.setMilliseconds(POMODORO_TIMER.getSplitTime());
+            this.splitTime.setNanoseconds(POMODORO_TIMER.getSplitNanoTime());
             POMODORO_TIMER.unsplit();
         }
     }

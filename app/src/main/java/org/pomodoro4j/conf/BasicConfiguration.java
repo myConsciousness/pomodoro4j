@@ -14,8 +14,10 @@
 
 package org.pomodoro4j.conf;
 
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -24,7 +26,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-abstract class ConfigurationBase implements Configuration {
+@NoArgsConstructor(access = AccessLevel.PACKAGE, staticName = "newInstance")
+final class BasicConfiguration implements Configuration {
 
     /**
      * The concentration minutes

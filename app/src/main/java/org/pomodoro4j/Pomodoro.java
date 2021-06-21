@@ -41,23 +41,62 @@ public interface Pomodoro extends BreakSupport, Serializable {
     public void reset();
 
     /**
-     * Returns the start time.
+     * Returns the time this pomodoro was started in milliseconds, between the
+     * current time and midnight, January 1, 1970 UTC.
      *
-     * @return The start time
+     * @return The time this pomodoro was started in milliseconds, between the
+     *         current time and midnight, January 1, 1970 UTC
      */
-    public long getStartTime();
+    public long getStartMilliseconds();
 
     /**
-     * Returns the time.
+     * Returns the time this pomodoro was started in nanoseconds, between the
+     * current time and midnight, January 1, 1970 UTC.
      *
-     * @return The time
+     * @return The time this pomodoro was started in nanoseconds, between the
+     *         current time and midnight, January 1, 1970 UTC
      */
-    public long getTime();
+    public long getStartNanoseconds();
 
     /**
-     * Returns the split time.
+     * Returns the time in milliseconds on the pomodoro timer.
      *
-     * @return The split time
+     * <p>
+     * This is either the time between the start and the moment this method is
+     * called, or the amount of time between start and stop.
+     *
+     * @return The time in milliseconds
      */
-    public long getSplitTime();
+    public long getMilliseconds();
+
+    /**
+     * Returns the time in nanoseconds on the pomodoro timer.
+     *
+     * <p>
+     * This is either the time between the start and the moment this method is
+     * called, or the amount of time between start and stop.
+     *
+     * @return The time in nanoseconds
+     */
+    public long getNanoseconds();
+
+    /**
+     * Returns the split time in milliseconds on the stopwatch.
+     *
+     * <p>
+     * This is the time between start and latest split.
+     *
+     * @return the split time in milliseconds
+     */
+    public long getSplitMilliseconds();
+
+    /**
+     * Returns the split time in nanoseconds on the stopwatch.
+     *
+     * <p>
+     * This is the time between start and latest split.
+     *
+     * @return the split time in nanoseconds
+     */
+    public long getSplitNanoseconds();
 }

@@ -29,9 +29,9 @@ import lombok.ToString;
 public final class ConfigurationBuilder {
 
     /**
-     * The configuration base
+     * The basic configuration
      */
-    private ConfigurationBase configurationBase = new PropertyConfiguration();
+    private BasicConfiguration basicConfiguration = BasicConfiguration.newInstance();
 
     /**
      * Returns the new instance of {@link ConfigurationBuilder} .
@@ -54,7 +54,7 @@ public final class ConfigurationBuilder {
      */
     public ConfigurationBuilder setConcentrationMinutes(int concentrationMinutes) {
         this.checkNotBuilt();
-        this.configurationBase.setConcentrationMinutes(concentrationMinutes);
+        this.basicConfiguration.setConcentrationMinutes(concentrationMinutes);
         return this;
     }
 
@@ -70,7 +70,7 @@ public final class ConfigurationBuilder {
      */
     public ConfigurationBuilder setBreakMinutes(int breakMinutes) {
         this.checkNotBuilt();
-        this.configurationBase.setBreakMinutes(breakMinutes);
+        this.basicConfiguration.setBreakMinutes(breakMinutes);
         return this;
     }
 
@@ -86,7 +86,7 @@ public final class ConfigurationBuilder {
      */
     public ConfigurationBuilder setLongerBreakMinutes(int longerBreakMinutes) {
         this.checkNotBuilt();
-        this.configurationBase.setLongerBreakMinutes(longerBreakMinutes);
+        this.basicConfiguration.setLongerBreakMinutes(longerBreakMinutes);
         return this;
     }
 
@@ -102,7 +102,7 @@ public final class ConfigurationBuilder {
      */
     public ConfigurationBuilder setCountUntilLongerBreak(int countUntilLongerBreak) {
         this.checkNotBuilt();
-        this.configurationBase.setCountUntilLongerBreak(countUntilLongerBreak);
+        this.basicConfiguration.setCountUntilLongerBreak(countUntilLongerBreak);
         return this;
     }
 
@@ -119,9 +119,9 @@ public final class ConfigurationBuilder {
         this.checkNotBuilt();
 
         try {
-            return this.configurationBase;
+            return this.basicConfiguration;
         } finally {
-            this.configurationBase = null;
+            this.basicConfiguration = null;
         }
     }
 
@@ -130,7 +130,7 @@ public final class ConfigurationBuilder {
      * already been built, it will always fail at runtime.
      */
     private void checkNotBuilt() {
-        if (this.configurationBase == null) {
+        if (this.basicConfiguration == null) {
             throw new IllegalStateException("Cannot use this builder any longer, build() has already been called.");
         }
     }

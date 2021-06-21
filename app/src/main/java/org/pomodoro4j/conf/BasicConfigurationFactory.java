@@ -14,23 +14,24 @@
 
 package org.pomodoro4j.conf;
 
-import java.io.Serializable;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author Kato Shinya
  * @since 1.0.0
  */
-interface ConfigurationFactory extends Serializable {
+@ToString
+@EqualsAndHashCode
+final class BasicConfigurationFactory implements ConfigurationFactory {
 
-    /**
-     * Returns the root configuration.
-     *
-     * @return The root configuration
-     */
-    public Configuration getInstance();
+    @Override
+    public Configuration getInstance() {
+        return BasicConfiguration.newInstance();
+    }
 
-    /**
-     * Cleans up resources acquired by this factory.
-     */
-    public void dispose();
+    @Override
+    public void dispose() {
+        throw new UnsupportedOperationException();
+    }
 }
