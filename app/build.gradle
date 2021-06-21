@@ -20,6 +20,28 @@ plugins {
     id 'io.franzbecker.gradle-lombok' version '4.0.0'
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/myConsciousness/pomodoro4j")
+            credentials {
+                username = System.getenv("GITHUB_USER")
+                password = System.getenv("GITHUB_PUBLISH_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        group 'org.pomodoro4j'
+
+        gpr(MavenPublication) {
+            artifactId = 'pomodoro4j'
+            from(components.java)
+        }
+    }
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(11))
