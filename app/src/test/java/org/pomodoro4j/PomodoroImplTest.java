@@ -121,10 +121,10 @@ public final class PomodoroImplTest {
     }
 
     @Nested
-    class TestIsBreakOngoing {
+    class TestIsBreaking {
 
         @Test
-        void testIsBreakOngoing() {
+        void testIsBreaking() {
             final PomodoroImpl sut = assertDoesNotThrow(
                     () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
 
@@ -134,7 +134,7 @@ public final class PomodoroImplTest {
             assertDoesNotThrow(() -> sut.startBreak());
             assertEquals(PomodoroState.BREAKING, sut.getPomodoroState());
 
-            final boolean actual = assertDoesNotThrow(() -> sut.isBreakOngoing());
+            final boolean actual = assertDoesNotThrow(() -> sut.isBreaking());
             assertTrue(actual);
         }
 
@@ -151,18 +151,18 @@ public final class PomodoroImplTest {
             assertDoesNotThrow(() -> sut.endBreak());
             assertEquals(PomodoroState.CONCENTRATING, sut.getPomodoroState());
 
-            final boolean actual = assertDoesNotThrow(() -> sut.isBreakOngoing());
+            final boolean actual = assertDoesNotThrow(() -> sut.isBreaking());
             assertFalse(actual);
         }
 
         @Test
-        void testIsBreakOngoingBeforeStartBreak() {
+        void testisBreakOngoingBeforeStartBreak() {
             final PomodoroImpl sut = assertDoesNotThrow(
                     () -> new PomodoroImpl(ConfigurationBuilder.newBuilder().build()));
 
             assertNotNull(sut);
 
-            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.isBreakOngoing());
+            final PomodoroException actual = assertThrows(PomodoroException.class, () -> sut.isBreaking());
             assertNotNull(actual);
         }
 
@@ -178,7 +178,7 @@ public final class PomodoroImplTest {
             assertEquals(PomodoroState.LONGER_BREAKING, sut.getPomodoroState());
             assertDoesNotThrow(() -> sut.endBreak());
             assertEquals(PomodoroState.FINISHED, sut.getPomodoroState());
-            assertDoesNotThrow(() -> sut.isBreakOngoing());
+            assertDoesNotThrow(() -> sut.isBreaking());
         }
     }
 
@@ -487,7 +487,7 @@ public final class PomodoroImplTest {
                 if (sut.shouldStartBreak()) {
                     sut.startBreak();
 
-                    while (sut.isBreakOngoing()) {
+                    while (sut.isBreaking()) {
                         if (sut.shouldEndBreak()) {
                             assertEquals(sut.getBreakCounter().getCount() > 3 ? PomodoroState.LONGER_BREAKING
                                     : PomodoroState.BREAKING, sut.getPomodoroState());
@@ -518,7 +518,7 @@ public final class PomodoroImplTest {
 
                 sut.startBreakIfShould();
 
-                while (sut.isBreakOngoing()) {
+                while (sut.isBreaking()) {
                     sut.endBreakIfShould();
                 }
             }

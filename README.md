@@ -17,6 +17,7 @@
     - [1.3.1. Add the dependencies](#131-add-the-dependencies)
     - [1.3.2. Create Pomodoro instance with configuration](#132-create-pomodoro-instance-with-configuration)
     - [1.3.3. Start Pomodoro cycle](#133-start-pomodoro-cycle)
+      - [1.3.3.1. Simplified implementation](#1331-simplified-implementation)
   - [1.4. License](#14-license)
   - [1.5. More Information](#15-more-information)
 
@@ -139,13 +140,10 @@ public class DemoPomodoro {
 
         final Pomodoro pomodoro = PomodoroFactory.newInstance(configuration).getInstance()
 
-        // Start Pomodoro cycle
-        pomodoro.start();
-
         // The entire Pomodoro cycle is performed in this while clause.
         // With the above property value setting,
         // concentration and rest will be performed four times, with a longer rest at the end.
-        while (pomodoro.isOngoing()) {
+        while (pomodoro.performs()) {
 
             // When the above property value of 25 minutes has elapsed, the break time begins.
             if (pomodoro.shouldStartBreak()) {
@@ -153,7 +151,7 @@ public class DemoPomodoro {
                 pomodoro.startBreak();
 
                 // All cycles during the break will be performed in this while clause.
-                while (pomodoro.isBreakOngoing()) {
+                while (pomodoro.isBreaking()) {
 
                     // When the above property value of 5 (normal break) or 15 (longer break) minutes has elapsed, the break time ends.
                     if (pomodoro.shouldEndBreak()) {
@@ -162,6 +160,31 @@ public class DemoPomodoro {
                         pomodoro.endBreak();
                     }
                 }
+            }
+        }
+    }
+}
+```
+
+#### 1.3.3.1. Simplified implementation
+
+```java
+package demo.pomodoro4j;
+
+import org.pomodoro4j.PomodoroFactory;
+import org.pomodoro4j.config.ConfigurationBuilder;
+
+public class DemoPomodoro {
+
+    public static void main(String[] args) {
+
+        final Pomodoro pomodoro = PomodoroFactory.newInstance(ConfigurationBuilder.newBuilder().build()).getInstance()
+
+        while (pomodoro.performs()) {
+            pomodoro.startBreakIfShould();
+
+            while (pomodoro.isBreaking()) {
+              pomodoro.endBreakIfShould();
             }
         }
     }

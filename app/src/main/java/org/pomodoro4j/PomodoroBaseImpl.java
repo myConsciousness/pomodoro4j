@@ -84,7 +84,7 @@ public abstract class PomodoroBaseImpl implements PomodoroBase {
     }
 
     @Override
-    public boolean isBreakOngoing() {
+    public boolean isBreaking() {
         this.checkState(BreakPolicy.IS_BREAK_ONGOING);
         return this.pomodoroState == PomodoroState.BREAKING || this.pomodoroState == PomodoroState.LONGER_BREAKING;
     }

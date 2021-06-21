@@ -32,7 +32,7 @@ public interface BreakSupport {
      *
      * @return {@code true} if a break is ongoing, otherwise {@code false}
      */
-    public boolean isBreakOngoing();
+    public boolean isBreaking();
 
     /**
      * Checkes if a break should be ended.
