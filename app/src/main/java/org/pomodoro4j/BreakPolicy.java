@@ -25,7 +25,7 @@ enum BreakPolicy {
     SHOULD_START_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState == PomodoroState.CONCENTRATING) {
+            if (pomodoroState == PomodoroState.CONCENTRATING || pomodoroState == PomodoroState.STOPPED) {
                 return;
             }
 
@@ -37,7 +37,8 @@ enum BreakPolicy {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
             if (pomodoroState == PomodoroState.CONCENTRATING || pomodoroState == PomodoroState.BREAKING
-                    || pomodoroState == PomodoroState.LONGER_BREAKING || pomodoroState == PomodoroState.FINISHED) {
+                    || pomodoroState == PomodoroState.LONGER_BREAKING || pomodoroState == PomodoroState.STOPPED
+                    || pomodoroState == PomodoroState.FINISHED) {
                 return;
             }
 
@@ -48,7 +49,8 @@ enum BreakPolicy {
     SHOULD_END_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState == PomodoroState.BREAKING || pomodoroState == PomodoroState.LONGER_BREAKING) {
+            if (pomodoroState == PomodoroState.BREAKING || pomodoroState == PomodoroState.LONGER_BREAKING
+                    || pomodoroState == PomodoroState.STOPPED) {
                 return;
             }
 
@@ -59,7 +61,7 @@ enum BreakPolicy {
     START_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState == PomodoroState.CONCENTRATING) {
+            if (pomodoroState == PomodoroState.CONCENTRATING || pomodoroState == PomodoroState.STOPPED) {
                 return;
             }
 
@@ -70,7 +72,8 @@ enum BreakPolicy {
     END_BREAK {
         @Override
         public void checkState(@NonNull final PomodoroState pomodoroState) {
-            if (pomodoroState == PomodoroState.BREAKING || pomodoroState == PomodoroState.LONGER_BREAKING) {
+            if (pomodoroState == PomodoroState.BREAKING || pomodoroState == PomodoroState.LONGER_BREAKING
+                    || pomodoroState == PomodoroState.STOPPED) {
                 return;
             }
 

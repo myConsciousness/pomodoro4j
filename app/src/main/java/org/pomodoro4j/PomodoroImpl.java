@@ -14,6 +14,8 @@
 
 package org.pomodoro4j;
 
+import java.util.concurrent.TimeUnit;
+
 import org.pomodoro4j.conf.Configuration;
 
 import lombok.EqualsAndHashCode;
@@ -64,17 +66,32 @@ final class PomodoroImpl extends PomodoroBaseImpl implements Pomodoro {
     }
 
     @Override
-    public long getStartTime() {
+    public long getStartMilliseconds() {
         return super.getPomodoroTimer().getStartTime();
     }
 
     @Override
-    public long getTime() {
+    public long getStartNanoseconds() {
+        return TimeUnit.MILLISECONDS.toNanos(super.getPomodoroTimer().getStartTime());
+    }
+
+    @Override
+    public long getMilliseconds() {
         return super.getPomodoroTimer().getTime();
     }
 
     @Override
-    public long getSplitTime() {
-        return super.getPomodoroTimer().getSplitTime();
+    public long getNanoseconds() {
+        return super.getPomodoroTimer().getNanoTime();
+    }
+
+    @Override
+    public long getSplitMilliseconds() {
+        return super.getSplitTime().getMilliseconds();
+    }
+
+    @Override
+    public long getSplitNanoseconds() {
+        return super.getSplitTime().getNanoseconds();
     }
 }
