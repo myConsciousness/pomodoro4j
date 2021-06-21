@@ -15,7 +15,6 @@
 package org.pomodoro4j.conf;
 
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -24,20 +23,15 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class PropertyConfigurationFactory implements ConfigurationFactory {
+final class BasicConfigurationFactory implements ConfigurationFactory {
 
     @Override
     public Configuration getInstance() {
-        return new PropertyConfiguration();
-    }
-
-    @Override
-    public Configuration getInstance(@NonNull String configTreePath) {
-        return new PropertyConfiguration(configTreePath);
+        return BasicConfiguration.newInstance();
     }
 
     @Override
     public void dispose() {
-        // Do nothing
+        throw new UnsupportedOperationException();
     }
 }

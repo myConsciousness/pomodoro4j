@@ -16,13 +16,11 @@ package org.pomodoro4j.conf;
 
 import java.io.Serializable;
 
-import lombok.NonNull;
-
 /**
  * @author Kato Shinya
  * @since 1.0.0
  */
-public interface ConfigurationFactory extends Serializable {
+interface ConfigurationFactory extends Serializable {
 
     /**
      * Returns the root configuration.
@@ -30,14 +28,6 @@ public interface ConfigurationFactory extends Serializable {
      * @return The root configuration
      */
     public Configuration getInstance();
-
-    /**
-     * Returns the configuration specified by the path passed as an argument.
-     *
-     * @param configTreePath The path
-     * @return The configuration
-     */
-    public Configuration getInstance(@NonNull final String configTreePath);
 
     /**
      * Cleans up resources acquired by this factory.

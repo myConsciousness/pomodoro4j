@@ -17,7 +17,6 @@ package org.pomodoro4j.conf;
 import java.lang.reflect.InvocationTargetException;
 
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -31,12 +30,7 @@ public final class ConfigurationContext {
     /**
      * The package of default configuration factory
      */
-    private static final String DEFAULT_CONFIGURATION_FACTORY = "org.pomodoro4j.conf.PropertyConfigurationFactory";
-
-    /**
-     * The package of configuration implementation
-     */
-    private static final String CONFIGURATION_IMPLEMENTATION = "org.pomodoro4j.configurationFactory";
+    private static final String DEFAULT_CONFIGURATION_FACTORY = "org.pomodoro4j.conf.BasicConfigurationFactory";
 
     /**
      * The configuration factory
@@ -45,25 +39,11 @@ public final class ConfigurationContext {
 
     static {
         try {
-            CONFIGURATION_FACTORY = (ConfigurationFactory) Class.forName(getConfigurationImpl())
+            CONFIGURATION_FACTORY = (ConfigurationFactory) Class.forName(DEFAULT_CONFIGURATION_FACTORY)
                     .getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | NoSuchMethodException | SecurityException e) {
             throw new IllegalStateException(e);
-        }
-    }
-
-    /**
-     * Returns the new instance of configuration implementation.
-     *
-     * @return The new instance of configuration implementation
-     */
-    private static String getConfigurationImpl() {
-        try {
-            return System.getProperty(CONFIGURATION_IMPLEMENTATION, DEFAULT_CONFIGURATION_FACTORY);
-        } catch (SecurityException ignore) {
-            // Unsigned applets are not allowed to access System properties
-            return DEFAULT_CONFIGURATION_FACTORY;
         }
     }
 
@@ -74,19 +54,5 @@ public final class ConfigurationContext {
      */
     public static Configuration getInstance() {
         return CONFIGURATION_FACTORY.getInstance();
-    }
-
-    /**
-     * Returns the new instance of {@link ConfigurationFactory} based on the tree
-     * path passed as an argument.
-     *
-     * @param configTreePath The tree path of configuration
-     * @return The new instance of {@link ConfigurationFactory} based on the tree
-     *         path
-     *
-     * @exception NullPointerException If {@code null} is passed as an argument
-     */
-    public static Configuration getInstance(@NonNull final String configTreePath) {
-        return CONFIGURATION_FACTORY.getInstance(configTreePath);
     }
 }
